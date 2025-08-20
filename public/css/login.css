@@ -1,0 +1,19 @@
+
+body {
+    background-color: #f8f9fa;
+}
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn-orange {
+    background-color: #ff6600;
+    color: white;
+}
+.btn-orange:hover {
+    background-color: #e65c00;
+}

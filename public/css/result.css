@@ -1,0 +1,161 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ff6600;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+    font-size: 1.5rem;
+}
+.navbar .form-control {
+    border-radius: 20px;
+}
+.navbar-toggler {
+    border: none;
+    color: white;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Post Box */
+.post-box {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.post-box textarea {
+    width: 100%;
+    border-radius: 10px;
+    resize: none;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+}
+.post-box button {
+    border-radius: 8px;
+}
+
+/* Posts */
+.post {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.post .publisher {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.verified {
+    color: #ff6600 !important;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+.post small {
+    color: gray;
+    font-size: 0.85rem;
+}
+.post p {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+.post-stats {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: gray;
+    display: flex;
+    justify-content: space-between;
+}
+.post-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 8px;
+}
+.post-actions button {
+    border: none;
+    background: none;
+    color: #ff6600;
+    font-weight: bold;
+    cursor: pointer;
+}
+.post-actions button:hover {
+    text-decoration: underline;
+}
+.searchButton{
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: inline-block !important;
+    color: #ff6600;
+    height: 40px !important;
+    width: 40px !important;
+    margin-left: 1px;
+    border: none;
+}
+.form-control{
+    border-radius: 10px !important;
+    height: 40px;
+    width: 20vw !important;
+    display: inline-block !important;
+    max-width:20vw;
+    min-width: 200px;
+}
+.SearchForm{
+    margin-left: 100px;
+    text-align: center;
+}
+.searshCollapse{
+    position: absolute;
+    top: 10px;
+    left: 25vw;
+}
+.postBut{
+    border: none;
+    background: none;
+    color: #ff6600;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+.postBut:hover{
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #ff6600;
+    border-radius: 5px;
+}
+.postform{
+    min-width: 80% !important;
+    
+}
+.postFormButton{
+    
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: inline-block !important;
+    color: #ff6600;
+    height: 40px !important;
+    width: 40px !important;
+    margin-left: 1px;
+    border: solid 2px #ff6600;
+}
+.postFormFather{
+    text-align: center;
+}
+.resultText{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}

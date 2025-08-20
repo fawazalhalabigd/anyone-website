@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/logo2.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anyone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo.png" alt="" style="width:40px;background:white;" class="rounded-pill"> Anyone
+      </a>
+      <a class="navbar-brand" href="/">
+        Go Home
+      </a>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo.png" alt="" style="width:40px;background:white;" class="rounded-pill"> Anyone
+      </a>
+      <a class="navbar-brand" href="/">
+        Go Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <img src="/images/avatars/d (<%= imageId %>).png" alt="User Aatar">
+    <h2><%=name %> <span class="verifiedAccount"><i class="fas fa-check"></i></span></h2>
+    <p>@<%=username %> </p>
+    <div class="profile-stats">
+      <div><%= postsnum %> Posts</div>
+      <div><span id="numberofpeoplelike"><%= peoplelikehim %></span> Likes</div>
+      
+    </div>
+    <% if (cookiUser.username == username){ %>
+      <button class="btn btn-light editProfilebutton">Edit Profile <i class='fas fa-palette'></i></button>
+    <% } else { %>
+      <% if (cookiUser.helike.includes(username) == true){ %>
+        <button class="btn btn-light likeitbutton" onclick="sendData(2,'<%= username %>', '<%= cookiUser.username %>')">dont Like it 	<i class='fa fa-thumbs-down'></i></button>
+      <% }else { %>
+        <button class="btn btn-light likeitbutton" onclick="sendData(1,'<%= username %>', '<%= cookiUser.username %>')">Like it 	<i class='fa fa-thumbs-up'></i></button>
+      <% } %>
+    <% } %>
+  </div>
+
+  <!-- User Posts -->
+  <div class="container containercreatepost">
+    <h4>User Posts</h4>
+    <!-- // add post box  -->
+
+
+    <% if (cookiUser.username == username){ %>
+    <div class="post-box2">
+  <!-- Header -->
+  <div class="d-flex align-items-center mb-2">
+    <!-- Profile link with avatar -->
+    <a href="/profile/Fawaz Alhalabi" class="profile-link">
+      <div class="rounded-circle bg-warning d-flex justify-content-center align-items-center"
+           style="width:40px; height:40px; overflow:hidden;">
+        <img src="/images/avatars/d (<%= imageId %>).png" 
+             alt="User Avatar" 
+             style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </a>
+    
+  
+    <!-- User info -->
+    <div class="ms-2 text-start ">
+      <strong>You</strong><br>
+      <small >Create a post</small>
+    </div>
+  </div>
+  <!-- Post body -->
+   <form method="post" action="/toolpostapost">
+    <textarea name="bodyPost" rows="3" placeholder="What's on your mind?"></textarea>
+    
+    <!-- Example button -->
+    <button class="btn buttonpost mt-2" type="submit">Post</button>
+  </form>
+</div>
+  <% } %>
+
+
+    <!-- posts things -->
+    <% console.log(allposts.length);%>
+    <% for( let index = 0; index < allposts.length; index++ ) { %>
+      <% var posttemp =  allposts[allposts.length-1 - index];%>
+      <div class="post">
+          <div class="publisher">
+          <img src="/images/avatars/d (<%= imageId %>).png" alt="IMAGE NOT FOUND" style="width:30px;background-color: #ffffff;" class="rounded-pill">
+          <%=name %> <span class="verified"><i class='far fa-check-circle'></i></span>
+          </div>
+          <!-- <small>2h ago</small> -->
+          <p><%= posttemp.body || "" %></p>
+          <div class="post-stats">
+          <span>👁 <%= posttemp.viwes %> views</span>
+          <span>👍 <%= posttemp.likes %> likes</span>
+          <span>💬 <%= posttemp.comments.length %> comments</span>
+          </div>
+          <hr>
+          
+          <form class="postFormFather"  method="post" action="/toolpostacomment">
+              <input class="postform form-control" name="bodyComment" type="search" placeholder="Add Comment Here!" aria-label="Search">
+              <input class="" value="<%=posttemp._id  %>" name="postId" style="display: none;">
+              <input value="<%= mainuser.profileImage %>" name="publisherImageid" style="display: none;">
+              <input value="<%= mainuser._id %>" name="publisherid" style="display: none;">
+              <input value="<%= mainuser.username %>" name="publisherusername" style="display: none;">
+              <input value="<%= mainuser.name %>" name="publishername" style="display: none;">
+              <button class="postFormButton" type="submit">
+                  <i class='fa fa-comment	'></i>
+              </button>
+          </form>
+          <hr>
+          <div class="post-actions">
+            <!-- <div class="postBut"><b>Like</b></div> -->
+              
+            <% if (thereaccount){ %>
+                <% if (user.helikeposts.includes(posttemp._id) == false){ %>
+                    <div class="postBut" onclick="sendDataLike(1,'<%= posttemp._id %>', '<%= mainuser._id %>')"><b>Like </b> <i class='fa fa-thumbs-up'></i></div>
+                <% }else { %>
+                    <div class="postBut" onclick="sendDataLike(2,'<%= posttemp._id %>', '<%= mainuser._id  %>')"><b>unLike </b><i class='fa fa-thumbs-down'></i></div>	
+                <% } %>
+            <% } %>
+            <a style="all:unset;cursor: pointer;" href="/postPage/<%= posttemp._id %>"><div class="postBut"><b>See All Comments</b></div></a>
+          </div>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
+
+<script>
+async function sendData(action,MainUsernamevar, likerUservar) {
+  try {
+    await fetch('/profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        action:action,
+        MainUsername:MainUsernamevar,
+        likerUser:likerUservar
+      })
+    });
+
+    // Reload page after sending
+    window.location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert('Error sending data to server');
+  }
+
+
+}
+</script>
+<script>
+async function sendDataLike(action,postid, likerUserid) {
+  try {
+    await fetch('/likeapost', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        action:action,
+        postid:postid,
+        likerUser:likerUserid
+      })
+    });
+
+    // Reload page after sending
+    window.location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert('Error sending data to server');
+  }
+
+
+}
+</script>
